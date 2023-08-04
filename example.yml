@@ -1,4 +1,4 @@
-name: canfam_main_workflow
+name: ci_workflow
 
 on:
   push:
