@@ -1,0 +1,14 @@
+name: canfam_main_workflow
+
+on:
+  push:
+    branches: [ main, master ]
+    tags: [ci_*]
+
+jobs:
+  black:
+    uses: michael-denyer/github_workflows/.github/workflows/black.yml@main
+  lizard:
+    uses: michael-denyer/github_workflows/.github/workflows/lizard.yml@main
+  ci:
+    uses: michael-denyer/github_workflows/.github/workflows/ci.yml@main

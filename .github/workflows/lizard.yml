@@ -1,0 +1,17 @@
+name: black
+
+on: workflow_call
+
+jobs:
+
+  build:
+    runs-on: ubuntu-20.04
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: install dependencies and packages
+      run: |
+        python -m pip install --upgrade pip
+        pip install setuptools wheel lizard
+    - name: lizard
+      run: lizard -l python -C 10 -w
