@@ -8,19 +8,19 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Setup python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v3
       with:
         python-version: '3.8'
-    - uses: actions/cache@v2
+    - uses: actions/cache@v3
       with:
         path: ${{ env.pythonLocation }}
         key: ${{ env.pythonLocation }}-pip-${{ hashFiles('test/requirements.txt') }}
         restore-keys: ${{ env.pythonLocation }}-pip
     - name: Check for existence of .github/install.sh
       id: check_install
-      uses: andstor/file-existence-action@v1
+      uses: andstor/file-existence-action@v2
       with:
         files: ".github/install.sh"
     - name: Run .github/install.sh
@@ -34,7 +34,7 @@ jobs:
         pip install flake8 bandit pylint pylint-mccabe ochrona pytest pytest-benchmark pytest-sugar
     - name: Check for existence of testing requirements
       id: check_test_reqs
-      uses: andstor/file-existence-action@v1
+      uses: andstor/file-existence-action@v2
       with:
         files: "test/requirements.txt"
     - name: Install testing requirements
@@ -43,7 +43,7 @@ jobs:
       if: steps.check_test_reqs.outputs.files_exists == 'true'
     - name: Check for existence of project requirements
       id: check_reqs
-      uses: andstor/file-existence-action@v1
+      uses: andstor/file-existence-action@v2
       with:
         files: "requirements.txt"
     - name: Install project requirements
@@ -52,7 +52,7 @@ jobs:
       if: steps.check_reqs.outputs.files_exists == 'true'
     - name: Check for existence of setup.py
       id: check_setup
-      uses: andstor/file-existence-action@v1
+      uses: andstor/file-existence-action@v2
       with:
         files: "setup.py"
     - name: Run setup.py to install as a package
