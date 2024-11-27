@@ -19,7 +19,7 @@ jobs:
       if: failure()
       run: |
         printenv | grep GITHUB
-        git config --global user.name 'michael_denyer'
+        git config --global user.name ${{ github.actor }}
         git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
         git remote -v
         git branch
