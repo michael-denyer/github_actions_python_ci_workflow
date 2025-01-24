@@ -8,12 +8,12 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Setup python
-      uses: actions/setup-python@v3
+      uses: actions/setup-python@v4
       with:
         python-version: '3.8'
-    - uses: actions/cache@v3
+    - uses: actions/cache@v4
       with:
         path: ${{ env.pythonLocation }}
         key: ${{ env.pythonLocation }}-pip-${{ hashFiles('test/requirements.txt') }}
@@ -79,7 +79,7 @@ jobs:
         pytest --rootdir=. --color=yes
       if: always()
     - name: Upload /test/output folder artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: test_output
         path: "./test/output/"
